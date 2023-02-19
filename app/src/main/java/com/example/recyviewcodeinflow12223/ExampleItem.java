@@ -10,6 +10,10 @@ public class ExampleItem {
         this.mText1 = mText1;
         this.mText2 = mText2;
     }
+    public void changeText1(String text){
+        mText1 = text;
+
+    }
 
     public int getmImageResource() {
         return mImageResource;

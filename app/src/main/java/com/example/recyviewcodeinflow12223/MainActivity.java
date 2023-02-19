@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<ExampleItem> mExampleList;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Button buttonInsert;
@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
+    public void  changeItem(int position, String text ){
+        mExampleList.get(position).changeText1(text);
+        mAdapter.notifyItemChanged(position);
+    }
 
 
 
@@ -115,5 +119,12 @@ public class MainActivity extends AppCompatActivity {
         // mRecyclerView.setHasFixedSize(mLayoutManager); // this is boolean incompatible with mLayoutManager
         mRecyclerView.setLayoutManager(mLayoutManager); //my solution! and it works!!!!!!!
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setonItemClickListener(new ExampleAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                changeItem(position,"Clicked!");
+            }
+        });
     }
 }
